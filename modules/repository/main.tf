@@ -1,7 +1,7 @@
 # Creates 2 github repositories -
 # web for html/js static site
 # api for backend stuff
-# both repos have develop, stage, and main branches with protection enabled.
+# both repos have develop, stage, and main branches
 
 provider "github" {
   token = var.github_token
@@ -20,6 +20,7 @@ resource "github_repository" "web" {
   has_projects = false
   delete_branch_on_merge = true
   auto_init = true
+  vulnerability_alerts = true
 }
 
 resource "github_repository" "api" {
@@ -32,73 +33,30 @@ resource "github_repository" "api" {
   has_projects = false
   delete_branch_on_merge = true
   auto_init = true
+  vulnerability_alerts = true
 }
 
 # Web Repository Branch Creation & Protection
 
-resource "github_branch_protection" "web-main" {
-  repository = github_repository.web.name
-  branch = "main"
-  enforce_admins = true
-  allows_deletions = false
-  allows_force_pushes = false
-}
 resource "github_branch" "web-develop" {
   repository = github_repository.web.name
   branch = "develop"
-}
-resource "github_branch_protection" "web-develop" {
-  repository = github_repository.web.name
-  branch = "develop"
-  enforce_admins = true
-  allows_deletions = false
-  allows_force_pushes = false
 }
 resource "github_branch" "web-stage" {
   repository = github_repository.web.name
   branch = "stage"
 }
-resource "github_branch_protection" "web-stage" {
-  repository = github_repository.web.name
-  branch = "stage"
-  enforce_admins = true
-  allows_deletions = false
-  allows_force_pushes = false
-}
-
 
 # API Repository Branch Creation & Protection
 
-resource "github_branch_protection" "api-main" {
-  repository = github_repository.api.name
-  branch = "main"
-  enforce_admins = true
-  allows_deletions = false
-  allows_force_pushes = false
-}
 resource "github_branch" "api-develop" {
   repository = github_repository.api.name
   branch = "develop"
 }
-resource "github_branch_protection" "api-develop" {
-  repository = github_repository.api.name
-  branch = "develop"
-  enforce_admins = true
-  allows_deletions = false
-  allows_force_pushes = false
-}
 resource "github_branch" "api-stage" {
-  repository = github_repository.api.name
+  repository= github_repository.api.name
   branch = "stage"
 }
-resource "github_branch_protection" "api-stage" {
-  repository = github_repository.api.name
-  branch = "stage"
-  enforce_admins = true
-  allows_deletions = false
-  allows_force_pushes = false
-}
-
 
 # Web Repository Secrets
 

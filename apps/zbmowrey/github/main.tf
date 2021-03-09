@@ -1,5 +1,5 @@
 module "repositories" {
-  source = "..\/..\/..\/modules\/repository"
+  source = "../../../modules/repository"
   repository_web_name = "zbmowrey-com-web"
   repository_api_name = "zbmowrey-com-api"
   aws_key             = var.aws_key
