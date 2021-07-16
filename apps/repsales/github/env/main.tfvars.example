@@ -1,6 +1,0 @@
-github_token = ""
-aws_key = ""
-aws_secret = ""
-github_org = "repsales"
-repository_web_name = "repsales-net-web"
-repository_api_name = "repsales-net-api"

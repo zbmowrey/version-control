@@ -1,6 +1,0 @@
-github_token = ""
-aws_key = ""
-aws_secret = ""
-github_org = "zbmowrey"
-repository_web_name = "zbmowrey-com-web"
-repository_api_name = "zbmowrey-com-api"

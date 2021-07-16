@@ -10,22 +10,16 @@ provider "github" {
 
 # Create Github Repositories
 
-resource "github_repository" "web" {
-  name = var.repository_web_name
-  description = "Front-end Website"
-  visibility = "private"
-  has_wiki = false
-  has_downloads = false
-  has_issues = false
-  has_projects = false
-  delete_branch_on_merge = true
-  auto_init = true
-  vulnerability_alerts = true
+# Web Repository Secrets
+
+locals {
+  repository_type = toset(["web", "api"])
 }
 
-resource "github_repository" "api" {
-  name = var.repository_api_name
-  description = "API & Back-End Services"
+resource "github_repository" "repo" {
+  for_each = local.repository_type
+  name = "${var.repository_base_name}-${each.value}"
+  description = "${var.repository_base_name} ${each.value} - managed by Terraform"
   visibility = "private"
   has_wiki = false
   has_downloads = false
@@ -38,48 +32,52 @@ resource "github_repository" "api" {
 
 # Web Repository Branch Creation & Protection
 
-resource "github_branch" "web-develop" {
-  repository = github_repository.web.name
+resource "github_branch" "develop" {
+  for_each = github_repository.repo
+  repository = each.value["name"]
   branch = "develop"
 }
-resource "github_branch" "web-stage" {
-  repository = github_repository.web.name
-  branch = "stage"
+resource "github_branch" "staging" {
+  for_each = github_repository.repo
+  repository = each.value["name"]
+  branch = "staging"
 }
 
-# API Repository Branch Creation & Protection
+# Create Github Repo Secrets
 
-resource "github_branch" "api-develop" {
-  repository = github_repository.api.name
-  branch = "develop"
+resource "github_actions_secret" "aws-key-main" {
+  for_each = github_repository.repo
+  repository = each.value["name"]
+  secret_name = "AWS_KEY_MAIN"
+  plaintext_value = var.aws_key_main
 }
-resource "github_branch" "api-stage" {
-  repository= github_repository.api.name
-  branch = "stage"
+resource "github_actions_secret" "aws-secret-main" {
+  for_each = github_repository.repo
+  repository = each.value["name"]
+  secret_name = "AWS_SECRET_MAIN"
+  plaintext_value = var.aws_secret_main
 }
-
-# Web Repository Secrets
-
-resource "github_actions_secret" "aws-key-web" {
-  repository = github_repository.web.name
-  secret_name = "AWS_KEY"
-  plaintext_value = var.aws_key
+resource "github_actions_secret" "aws-key-staging" {
+  for_each = github_repository.repo
+  repository = each.value["name"]
+  secret_name = "AWS_KEY_STAGING"
+  plaintext_value = var.aws_key_staging
 }
-resource "github_actions_secret" "aws-secret-web" {
-  repository = github_repository.web.name
-  secret_name = "AWS_SECRET"
-  plaintext_value = var.aws_secret
+resource "github_actions_secret" "aws-secret-staging" {
+  for_each = github_repository.repo
+  repository = each.value["name"]
+  secret_name = "AWS_SECRET_STAGING"
+  plaintext_value = var.aws_secret_staging
 }
-
-# API Repository Secrets
-
-resource "github_actions_secret" "aws-key-api" {
-  repository = github_repository.api.name
-  secret_name = "AWS_KEY"
-  plaintext_value = var.aws_key
+resource "github_actions_secret" "aws-key-develop" {
+  for_each = github_repository.repo
+  repository = each.value["name"]
+  secret_name = "AWS_KEY_DEVELOP"
+  plaintext_value = var.aws_key_develop
 }
-resource "github_actions_secret" "aws-secret-api" {
-  repository = github_repository.api.name
-  secret_name = "AWS_SECRET"
-  plaintext_value = var.aws_secret
+resource "github_actions_secret" "aws-secret-develop" {
+  for_each = github_repository.repo
+  repository = each.value["name"]
+  secret_name = "AWS_SECRET_DEVELOP"
+  plaintext_value = var.aws_secret_develop
 }
