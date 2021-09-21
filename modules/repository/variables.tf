@@ -21,3 +21,17 @@ variable "github_token" {}
 # Used to build repo names in a repeatable manner.
 
 variable "repository_base_name" {}
+
+variable "terraform_token" {}
+
+variable "repository_visibility" {
+  description = "public vs private"
+  type = string
+  default = ""
+}
+
+variable "create_api_repo" {
+  description = "Whether to create an API repository or not"
+  type = bool
+  default = true
+}

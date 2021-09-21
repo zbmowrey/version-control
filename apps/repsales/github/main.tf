@@ -9,4 +9,5 @@ module "repositories" {
   aws_secret_develop   = var.aws_secret_develop
   github_token         = var.github_token
   github_org           = var.github_org
+  terraform_token      = var.terraform_token
 }

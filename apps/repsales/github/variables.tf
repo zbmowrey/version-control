@@ -3,8 +3,10 @@
 
 variable "aws_key_main" {}
 variable "aws_secret_main" {}
+
 variable "aws_key_staging" {}
 variable "aws_secret_staging" {}
+
 variable "aws_key_develop" {}
 variable "aws_secret_develop" {}
 
@@ -16,3 +18,6 @@ variable "github_token" {}
 
 # Will be used to create uniformly named repositories for all functionality.
 variable "repository_base_name" {}
+
+# terraform cloud deployment credential
+variable "terraform_token" {}

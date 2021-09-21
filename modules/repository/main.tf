@@ -4,8 +4,8 @@
 # both repos have develop, stage, and main branches
 
 provider "github" {
-  token        = var.github_token
-  organization = var.github_org
+  token = var.github_token
+  owner = var.github_org
 }
 
 # Create Github Repositories
@@ -13,14 +13,14 @@ provider "github" {
 # Web Repository Secrets
 
 locals {
-  repository_type = toset(["web", "api"])
+  repository_type = var.create_api_repo == true ? toset(["web", "api"]) : toset(["base"])
 }
 
 resource "github_repository" "repo" {
   for_each               = local.repository_type
-  name                   = "${var.repository_base_name}-${each.value}"
+  name                   = each.value != "base" ? "${var.repository_base_name}-${each.value}" : var.repository_base_name
   description            = "${var.repository_base_name} ${each.value} - managed by Terraform"
-  visibility             = "private"
+  visibility             = var.repository_visibility != "" ? var.repository_visibility : "private"
   has_wiki               = false
   has_downloads          = false
   has_issues             = false
@@ -44,6 +44,12 @@ resource "github_branch" "staging" {
 }
 
 # Create Github Repo Secrets
+resource "github_actions_secret" "terraform_token" {
+  for_each        = github_repository.repo
+  repository      = each.value["name"]
+  secret_name     = "TERRAFORM_CLOUD_TOKEN"
+  plaintext_value = var.terraform_token
+}
 
 resource "github_actions_secret" "aws-key-main" {
   for_each        = github_repository.repo
