@@ -13,18 +13,19 @@ provider "github" {
 # Web Repository Secrets
 
 locals {
-  repository_type = var.create_api_repo == true ? toset(["web", "api"]) : toset(["base"])
+  repository_type = toset(var.repository_types)
+  repository_visibility = var.repository_visibility != "" ? var.repository_visibility : "private"
 }
 
 resource "github_repository" "repo" {
   for_each               = local.repository_type
-  name                   = each.value != "base" ? "${var.repository_base_name}-${each.value}" : var.repository_base_name
-  description            = "${var.repository_base_name} ${each.value} - managed by Terraform"
+  name                   = each.value != "none" ? "${var.repository_base_name}-${each.value}" : var.repository_base_name
+  description            = each.value != "none" ? "${var.repository_base_name} ${each.value} - managed by Terraform" : "${var.repository_base_name} - managed by Terraform"
   visibility             = var.repository_visibility != "" ? var.repository_visibility : "private"
-  has_wiki               = false
-  has_downloads          = false
-  has_issues             = false
-  has_projects           = false
+  has_wiki               = var.has_wiki
+  has_downloads          = var.has_downloads
+  has_issues             = var.has_issues
+  has_projects           = var.has_projects
   delete_branch_on_merge = true
   auto_init              = true
   vulnerability_alerts   = true
@@ -41,6 +42,24 @@ resource "github_branch" "staging" {
   for_each   = github_repository.repo
   repository = each.value["name"]
   branch     = "staging"
+}
+
+resource "github_branch_protection" "main" {
+  for_each = local.repository_visibility == "public" ? tomap(github_repository.repo) : tomap({})
+  pattern       = "main"
+  repository_id = github_repository.repo["none"].id
+}
+
+resource "github_branch_protection" "develop" {
+  for_each = local.repository_visibility == "public" ? tomap(github_repository.repo) : tomap({})
+  pattern       = "develop"
+  repository_id = github_repository.repo["none"].id
+}
+
+resource "github_branch_protection" "staging" {
+  for_each = local.repository_visibility == "public" ? tomap(github_repository.repo) : tomap({})
+  pattern       = "staging"
+  repository_id = github_repository.repo["none"].id
 }
 
 # Create Github Repo Secrets
@@ -86,4 +105,22 @@ resource "github_actions_secret" "aws-secret-develop" {
   repository      = each.value["name"]
   secret_name     = "AWS_SECRET_DEVELOP"
   plaintext_value = var.aws_secret_develop
+}
+resource "github_actions_secret" "cf-distribution-main" {
+  for_each        = github_repository.repo
+  repository      = each.value["name"]
+  secret_name     = "CF_DISTRIBUTION_MAIN"
+  plaintext_value = var.cf_distribution_main
+}
+resource "github_actions_secret" "cf-distribution-staging" {
+  for_each        = github_repository.repo
+  repository      = each.value["name"]
+  secret_name     = "CF_DISTRIBUTION_STAGING"
+  plaintext_value = var.cf_distribution_staging
+}
+resource "github_actions_secret" "cf-distribution-develop" {
+  for_each        = github_repository.repo
+  repository      = each.value["name"]
+  secret_name     = "CF_DISTRIBUTION_DEVELOP"
+  plaintext_value = var.cf_distribution_develop
 }

@@ -16,3 +16,17 @@ variable "github_token" {}
 
 # Will be used to create uniformly named repositories for all functionality.
 variable "repository_base_name" {}
+
+# Secrets for invalidating cache of CF Distributions in each environment
+variable "cf_distribution_main" {
+  type = string
+}
+variable "cf_distribution_staging" {
+  type = string
+}
+variable "cf_distribution_develop" {
+  type = string
+}
+variable "terraform_token" {
+  type = string
+}

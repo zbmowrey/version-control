@@ -3,10 +3,8 @@
 
 variable "aws_key_main" {}
 variable "aws_secret_main" {}
-
 variable "aws_key_staging" {}
 variable "aws_secret_staging" {}
-
 variable "aws_key_develop" {}
 variable "aws_secret_develop" {}
 
@@ -19,5 +17,16 @@ variable "github_token" {}
 # Will be used to create uniformly named repositories for all functionality.
 variable "repository_base_name" {}
 
-# terraform cloud deployment credential
-variable "terraform_token" {}
+# Secrets for invalidating cache of CF Distributions in each environment
+variable "cf_distribution_main" {
+  type = string
+}
+variable "cf_distribution_staging" {
+  type = string
+}
+variable "cf_distribution_develop" {
+  type = string
+}
+variable "terraform_token" {
+  type = string
+}
