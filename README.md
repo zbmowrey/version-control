@@ -1,2 +1,3 @@
-# terraform-scripts
-One-off terraform stacks for creating various resources
+# version-control
+
+Management of repositories and secrets. 
