@@ -13,6 +13,7 @@ variable "github_org" {}
 
 # Your personal github token, allows the script to access GH on your behalf.
 variable "github_token" {}
+variable "serverless_token" {}
 
 # Will be used to create uniformly named repositories for all functionality.
 variable "repository_base_name" {}

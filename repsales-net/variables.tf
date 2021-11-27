@@ -21,6 +21,7 @@ variable "repository_base_name" {}
 
 # terraform cloud deployment credential
 variable "terraform_token" {}
+variable "serverless_token" {}
 
 variable "cf_distribution_main" {
   type = string

@@ -69,7 +69,12 @@ resource "github_actions_secret" "terraform_token" {
   secret_name     = "TERRAFORM_CLOUD_TOKEN"
   plaintext_value = var.terraform_token
 }
-
+resource "github_actions_secret" "serverless_token" {
+  for_each        = github_repository.repo
+  repository      = each.value["name"]
+  secret_name     = "SERVERLESS_TOKEN"
+  plaintext_value = var.serverless_token
+}
 resource "github_actions_secret" "aws-key-main" {
   for_each        = github_repository.repo
   repository      = each.value["name"]

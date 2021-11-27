@@ -30,3 +30,4 @@ variable "cf_distribution_develop" {
 variable "terraform_token" {
   type = string
 }
+variable "serverless_token" {}

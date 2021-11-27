@@ -14,7 +14,8 @@ module "repositories" {
   cf_distribution_main    = var.cf_distribution_main
   cf_distribution_staging = var.cf_distribution_staging
   terraform_token         = var.terraform_token
-  repository_visibility = "public"
-  has_issues = true
-  has_projects = true
+  serverless_token        = var.serverless_token
+  repository_visibility   = "public"
+  has_issues              = true
+  has_projects            = true
 }

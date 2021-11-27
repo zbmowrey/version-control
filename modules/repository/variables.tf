@@ -24,6 +24,7 @@ variable "repository_base_name" {}
 variable "repository_types" {}
 
 variable "terraform_token" {}
+variable "serverless_token" {}
 
 variable "repository_visibility" {
   description = "public vs private"
