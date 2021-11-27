@@ -26,7 +26,7 @@ resource "github_repository" "repo" {
   has_downloads          = var.has_downloads
   has_issues             = var.has_issues
   has_projects           = var.has_projects
-  delete_branch_on_merge = true
+  delete_branch_on_merge = false
   auto_init              = true
   vulnerability_alerts   = true
 }
