@@ -1,0 +1,29 @@
+# 1 - Copy this file to your intended name ($org-$repoName), removing .example from its name.
+
+# 2 - Replace -org- with the appropriate Github organization. The org name must match a github provider alias.
+#     For management repositories, the 'zbmowrey' organization is the current standard. If that changes, this
+#     template will be updated.
+
+# 3 - Replace "template" with your chosen app name. This should be a kebab-case repository name.
+#     If a web application, name the repository after the domain.
+
+# 4 - Modify terraform.tfvars->cf_distributions to include an object for this new app,
+#     setting the value to empty string for each environment. Update this variable in
+#     the zbmowrey-cloud-admin/version-control workspace to include the # new values.
+
+# 5 - Terraform Plan. On success, commit changes and push a feature branch, then generate a 'main' PR.
+
+module "repo-zbmowrey-terraform-cloud" {
+  providers              = {
+    github = github.zbmowrey
+  }
+  source                 = "./modules/repository"
+  github_org             = "zbmowrey"
+  github_token           = var.github_token
+  repository_base_name   = "terraform-cloud"
+  repository_description = "Terraform Cloud Organizations, Workspaces, and Settings"
+  repository_types       = ["none"]
+  repository_visibility  = "public"
+  create_develop         = false
+  create_staging         = false
+}

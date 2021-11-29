@@ -1,0 +1,35 @@
+
+# 1 - Copy this file to your intended name ($org-$repoName), removing .example from its name.
+
+# 2 - Replace -org- with the appropriate Github organization. The org name must match a github provider alias.
+
+# 3 - Replace "template" with your chosen app name. This should be a kebab-case repository name.
+# If a web application, name the repository after the domain.
+
+# 4 - Modify terraform.tfvars->cf_distributions to include an object for this new app,
+# setting the value to empty string for each environment. Update this variable in
+# the zbmowrey-cloud-admin/version-control workspace to include the # new values.
+
+# 5 - Terraform Plan. On success, commit changes and push a feature branch, then generate a 'main' PR.
+
+module "repo-org-template" {
+  providers               = {
+    github = github.template
+  }
+  source                  = "./modules/repository"
+  repository_base_name    = "template"
+  repository_description  = "Repository_Description_Goes_Here"
+  repository_types        = ["none"]
+  aws_key_main            = var.aws_key_main
+  aws_secret_main         = var.aws_secret_main
+  aws_key_staging         = var.aws_key_staging
+  aws_secret_staging      = var.aws_secret_staging
+  aws_key_develop         = var.aws_key_develop
+  aws_secret_develop      = var.aws_secret_develop
+  github_token            = var.github_token
+  github_org              = "template"
+  cf_distribution_develop = var.cf_distributions["template"]["develop"]
+  cf_distribution_main    = var.cf_distributions["template"]["main"]
+  cf_distribution_staging = var.cf_distributions["template"]["staging"]
+  repository_visibility = "public"
+}
