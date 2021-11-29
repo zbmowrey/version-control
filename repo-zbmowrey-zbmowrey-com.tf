@@ -4,8 +4,8 @@ module "repo-zbmowrey-zbmowrey-com" {
   }
   source                  = "./modules/repository"
   github_org              = "zbmowrey"
-  repository_base_name    = "https://zbmowrey.com - a Resumé/Portfolio site."
-  repository_description  = "https://zbmowrey.com"
+  repository_base_name    = "zbmowrey-com"
+  repository_description  = "https://zbmowrey.com - a Resumé/Portfolio site."
   repository_types        = ["none"]
   aws_key_main            = var.aws_key_main
   aws_secret_main         = var.aws_secret_main
