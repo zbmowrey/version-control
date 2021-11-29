@@ -1,11 +1,9 @@
-# Creates 2 github repositories -
-# web for html/js static site
-# api for backend stuff
-# both repos have develop, stage, and main branches
-
-provider "github" {
-  token = var.github_token
-  owner = var.github_org
+terraform {
+  required_providers {
+    github = {
+      version = "~> 4.18.0"
+    }
+  }
 }
 
 # Create Github Repositories
@@ -13,14 +11,23 @@ provider "github" {
 # Web Repository Secrets
 
 locals {
-  repository_type = toset(var.repository_types)
-  repository_visibility = var.repository_visibility != "" ? var.repository_visibility : "private"
+  repository_type             = toset(var.repository_types)
+  repository_visibility       = var.repository_visibility != "" ? var.repository_visibility : "private"
+  dynamic_repository_settings = local.repository_visibility == "private" ? [] : [
+    {
+      dismiss_stale_reviews           = false
+      dismissal_restrictions          = []
+      require_code_owner_reviews      = false
+      required_approving_review_count = 2
+      restrict_dismissals             = false
+    }
+  ]
 }
 
 resource "github_repository" "repo" {
   for_each               = local.repository_type
   name                   = each.value != "none" ? "${var.repository_base_name}-${each.value}" : var.repository_base_name
-  description            = each.value != "none" ? "${var.repository_base_name} ${each.value} - managed by Terraform" : "${var.repository_base_name} - managed by Terraform"
+  description            = each.value != "none" ? "${var.repository_base_name} ${each.value} - managed by Terraform" : var.repository_description != "" ? var.repository_description : "${var.repository_base_name} - managed by Terraform"
   visibility             = var.repository_visibility != "" ? var.repository_visibility : "private"
   has_wiki               = var.has_wiki
   has_downloads          = var.has_downloads
@@ -30,6 +37,7 @@ resource "github_repository" "repo" {
   auto_init              = true
   vulnerability_alerts   = true
 }
+
 
 # Web Repository Branch Creation & Protection
 
@@ -45,21 +53,51 @@ resource "github_branch" "staging" {
 }
 
 resource "github_branch_protection" "main" {
-  for_each = local.repository_visibility == "public" ? tomap(github_repository.repo) : tomap({})
+  for_each      = local.repository_visibility == "public" ? tomap(github_repository.repo) : tomap({})
   pattern       = "main"
   repository_id = github_repository.repo["none"].id
+  dynamic "required_pull_request_reviews" {
+    for_each = local.dynamic_repository_settings
+    content {
+      dismiss_stale_reviews           = required_pull_request_reviews.value["dismiss_stale_reviews"]
+      dismissal_restrictions          = required_pull_request_reviews.value["dismissal_restrictions"]
+      require_code_owner_reviews      = required_pull_request_reviews.value["require_code_owner_reviews"]
+      required_approving_review_count = required_pull_request_reviews.value["required_approving_review_count"]
+      restrict_dismissals             = required_pull_request_reviews.value["restrict_dismissals"]
+    }
+  }
 }
 
 resource "github_branch_protection" "develop" {
-  for_each = local.repository_visibility == "public" ? tomap(github_repository.repo) : tomap({})
+  for_each      = local.repository_visibility == "public" ? tomap(github_repository.repo) : tomap({})
   pattern       = "develop"
   repository_id = github_repository.repo["none"].id
+  dynamic "required_pull_request_reviews" {
+    for_each = local.dynamic_repository_settings
+    content {
+      dismiss_stale_reviews           = required_pull_request_reviews.value["dismiss_stale_reviews"]
+      dismissal_restrictions          = required_pull_request_reviews.value["dismissal_restrictions"]
+      require_code_owner_reviews      = required_pull_request_reviews.value["require_code_owner_reviews"]
+      required_approving_review_count = required_pull_request_reviews.value["required_approving_review_count"]
+      restrict_dismissals             = required_pull_request_reviews.value["restrict_dismissals"]
+    }
+  }
 }
 
 resource "github_branch_protection" "staging" {
-  for_each = local.repository_visibility == "public" ? tomap(github_repository.repo) : tomap({})
+  for_each      = local.repository_visibility == "public" ? tomap(github_repository.repo) : tomap({})
   pattern       = "staging"
   repository_id = github_repository.repo["none"].id
+  dynamic "required_pull_request_reviews" {
+    for_each = local.dynamic_repository_settings
+    content {
+      dismiss_stale_reviews           = required_pull_request_reviews.value["dismiss_stale_reviews"]
+      dismissal_restrictions          = required_pull_request_reviews.value["dismissal_restrictions"]
+      require_code_owner_reviews      = required_pull_request_reviews.value["require_code_owner_reviews"]
+      required_approving_review_count = required_pull_request_reviews.value["required_approving_review_count"]
+      restrict_dismissals             = required_pull_request_reviews.value["restrict_dismissals"]
+    }
+  }
 }
 
 # Create Github Repo Secrets

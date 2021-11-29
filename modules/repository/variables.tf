@@ -22,8 +22,11 @@ variable "github_token" {}
 variable "repository_base_name" {}
 
 variable "repository_types" {}
+variable "repository_description" {}
 
-variable "terraform_token" {}
+variable "terraform_token" {
+  default = ""
+}
 variable "serverless_token" {}
 
 variable "repository_visibility" {
@@ -41,12 +44,15 @@ variable "create_api_repo" {
 # Secrets for invalidating cache of CF Distributions in each environment
 variable "cf_distribution_main" {
   type = string
+  default = ""
 }
 variable "cf_distribution_staging" {
   type = string
+  default = ""
 }
 variable "cf_distribution_develop" {
   type = string
+  default = ""
 }
 
 variable "has_issues" {

@@ -1,6 +1,7 @@
 module "repositories" {
   source                  = "../modules/repository"
   repository_base_name    = var.repository_base_name
+  repository_description  = "REP Sales, Inc. - primary site"
   repository_types        = ["web"]
   aws_key_main            = var.aws_key_main
   aws_secret_main         = var.aws_secret_main

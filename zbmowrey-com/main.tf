@@ -1,6 +1,7 @@
 module "repositories" {
   source                  = "../modules/repository"
   repository_base_name    = var.repository_base_name
+  repository_description  = "https://zbmowrey.com - a Resumé/Portfolio site."
   repository_types        = ["none"]
   aws_key_main            = var.aws_key_main
   aws_secret_main         = var.aws_secret_main
