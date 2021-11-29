@@ -13,15 +13,15 @@
 
 # 5 - Terraform Plan. On success, commit changes and push a feature branch, then generate a 'main' PR.
 
-module "repo-zbmowrey-terraform-cloud" {
+module "repo-org-template" {
   providers              = {
-    github = github.zbmowrey
+    github = github.org
   }
   source                 = "./modules/repository"
-  github_org             = "zbmowrey"
+  github_org             = "-org-"
   github_token           = var.github_token
-  repository_base_name   = "terraform-cloud"
-  repository_description = "Terraform Cloud Organizations, Workspaces, and Settings"
+  repository_base_name   = "template"
+  repository_description = "Give_Me_a_Description"
   repository_types       = ["none"]
   repository_visibility  = "public"
   create_develop         = false
