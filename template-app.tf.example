@@ -6,9 +6,9 @@
 # 3 - Replace "template-tld" with your chosen app name. This should be a kebab-case repository name.
 #     If a web application, name the repository after the domain.
 
-# 4 - Modify terraform.tfvars->cf_distributions to include an object for this new app,
-#     setting the value to empty string for each environment. Update this variable in
-#     the zbmowrey-cloud-admin/version-control workspace to include the # new values.
+# 4 - (Optional). If your app creates a CloudFront distribution for each environment, you can provide those
+#     IDs to the DevOps lead, who will update the variable in TF Cloud. To reflect on your local, add them
+#     to the terraform.tfvars file under cf_distributions.
 
 # 5 - Terraform Plan. On success, commit changes and push a feature branch, then generate a 'main' PR.
 
