@@ -15,18 +15,18 @@ terraform {
 
 provider "github" {
   alias = "zbmowrey"
-  token = "9d0acd2759522418bf33b847c1bc309fdf5ea994"
+  token = var.github_token
   owner = "zbmowrey"
 }
 
 provider "github" {
   alias = "repsales"
-  token = "9d0acd2759522418bf33b847c1bc309fdf5ea994"
+  token = var.github_token
   owner = "repsales"
 }
 
 provider "github" {
   alias = "tomatowarning"
-  token = "9d0acd2759522418bf33b847c1bc309fdf5ea994"
+  token = var.github_token
   owner = "tomatowarning"
 }
