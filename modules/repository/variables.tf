@@ -1,59 +1,81 @@
-# Will be stored as secrets in Github so we can use Actions to deploy
-
-variable "aws_key_main" {}
-variable "aws_secret_main" {}
-
-variable "aws_key_staging" {}
-variable "aws_secret_staging" {}
-
-variable "aws_key_develop" {}
-variable "aws_secret_develop" {}
-
-# Which org gets this new repo?
+# Required Variables
 
 variable "github_org" {}
-
-# Your personal github token, allows the script to access GH on your behalf.
-
 variable "github_token" {}
-
-# Used to build repo names in a repeatable manner.
-
 variable "repository_base_name" {}
 
-variable "repository_types" {}
-variable "repository_description" {}
+
+# Optional Variables
+variable "create_develop" {
+  default = true
+}
+variable "create_staging" {
+  default = true
+}
+
+variable "repository_types" {
+  # This default will create a single repo with no prefix or suffix.
+  default = ["none"]
+}
+variable "repository_description" {
+  default = "Managed by Terraform"
+}
+variable "repository_visibility" {
+  description = "public vs private"
+  type        = string
+  default     = "private"
+}
+variable "create_api_repo" {
+  description = "Whether to create an API repository or not"
+  type        = bool
+  default     = false
+}
+
+# Service Tokens
 
 variable "terraform_token" {
   default = ""
 }
-variable "serverless_token" {}
-
-variable "repository_visibility" {
-  description = "public vs private"
-  type        = string
-  default     = ""
+variable "serverless_token" {
+  default = ""
 }
-
-variable "create_api_repo" {
-  description = "Whether to create an API repository or not"
-  type        = bool
-  default     = true
+variable "aws_key_main" {
+  default = ""
+}
+variable "aws_secret_main" {
+  default = ""
+}
+variable "aws_key_staging" {
+  default = ""
+}
+variable "aws_secret_staging" {
+  default = ""
+}
+variable "aws_key_develop" {
+  default = ""
+}
+variable "aws_secret_develop" {
+  default = ""
 }
 
 # Secrets for invalidating cache of CF Distributions in each environment
+# Only needed for web applications using CloudFront. Add the ID after the
+# distribution is created.
+
 variable "cf_distribution_main" {
-  type = string
+  type    = string
   default = ""
 }
 variable "cf_distribution_staging" {
-  type = string
+  type    = string
   default = ""
 }
 variable "cf_distribution_develop" {
-  type = string
+  type    = string
   default = ""
 }
+
+# Basic repository settings
 
 variable "has_issues" {
   type    = bool

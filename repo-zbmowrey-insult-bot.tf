@@ -14,6 +14,5 @@ module "repo-zbmowrey-insult-bot" {
   aws_key_develop        = var.aws_key_develop
   aws_secret_develop     = var.aws_secret_develop
   github_token           = var.github_token
-  serverless_token       = var.serverless_token
   repository_visibility = "public"
 }

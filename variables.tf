@@ -8,3 +8,8 @@ variable "github_token" {}
 variable "terraform_token" {}
 variable "serverless_token" {}
 variable "cf_distributions" {}
+
+# Not actually used but it's in global vars and I'm tired of the noise about unused variables.
+variable "terraform_slack_url" {
+  default = ""
+}

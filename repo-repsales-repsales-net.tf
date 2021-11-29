@@ -14,7 +14,6 @@ module "repo-repsales-repsales-net" {
   aws_secret_develop      = var.aws_secret_develop
   github_token            = var.github_token
   github_org              = "repsales"
-  serverless_token        = var.serverless_token
   cf_distribution_develop = var.cf_distributions["repsales-net"]["develop"]
   cf_distribution_main    = var.cf_distributions["repsales-net"]["main"]
   cf_distribution_staging = var.cf_distributions["repsales-net"]["staging"]

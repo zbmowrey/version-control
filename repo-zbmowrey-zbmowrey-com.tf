@@ -14,7 +14,6 @@ module "repo-zbmowrey-zbmowrey-com" {
   aws_key_develop         = var.aws_key_develop
   aws_secret_develop      = var.aws_secret_develop
   github_token            = var.github_token
-  serverless_token        = var.serverless_token
   cf_distribution_develop = var.cf_distributions["zbmowrey-com"].develop
   cf_distribution_main    = var.cf_distributions["zbmowrey-com"].main
   cf_distribution_staging = var.cf_distributions["zbmowrey-com"].staging

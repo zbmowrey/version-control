@@ -1,12 +1,12 @@
-module "repo-zbmowrey-cloud-admin" {
+module "repo-zbmowrey-version-control" {
   providers              = {
     github = github.zbmowrey
   }
   source                 = "./modules/repository"
-  github_token           = var.github_token
   github_org             = "zbmowrey"
-  repository_base_name   = "cloud-admin"
-  repository_description = "Cloud Governance - Organizations, Policies, and Controls"
+  github_token           = var.github_token
+  repository_base_name   = "version-control"
+  repository_description = "Repository Management in Terraform Cloud"
   repository_types       = ["none"]
   repository_visibility  = "public"
   create_develop         = false
