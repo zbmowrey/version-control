@@ -14,6 +14,7 @@ module "repo-repsales-repsales-net" {
   aws_key_develop        = var.aws_key_develop
   aws_secret_develop     = var.aws_secret_develop
   github_token           = var.github_token
+  serverless_token       = var.serverless_token
 
   # Try to find cloudfront distribution IDs for each environment. If not found
   # for any reason, return "".
