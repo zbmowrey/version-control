@@ -1,4 +1,4 @@
-module "repo-zbmowrey-zbmowrey-com" {
+module "repo-blog-zbmowrey-zbmowrey-com" {
   providers = {
     github = github.zbmowrey
   }
