@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     github = {
-      version = "~> 4.18.0"
+      source = "integrations/github"
     }
   }
   backend "remote" {
