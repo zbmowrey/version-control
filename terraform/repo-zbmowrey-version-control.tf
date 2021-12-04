@@ -1,7 +1,5 @@
 module "repo-zbmowrey-version-control" {
-  providers              = {
-    github = github.zbmowrey
-  }
+
   source                 = "./modules/repository"
   github_org             = "zbmowrey"
   github_token           = var.github_token

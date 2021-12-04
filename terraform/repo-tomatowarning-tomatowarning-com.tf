@@ -1,7 +1,5 @@
 module "repo-tomatowarning-tomatowarning-com" {
-  providers              = {
-    github = github.tomatowarning
-  }
+
   source                 = "./modules/repository"
   github_org             = "tomatowarning"
   repository_base_name   = "tomatowarning-com"

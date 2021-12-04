@@ -1,7 +1,5 @@
 module "repo-repsales-repsales-net" {
-  providers              = {
-    github = github.repsales
-  }
+
   source                 = "./modules/repository"
   github_org             = "repsales"
   repository_base_name   = "repsales-net"
