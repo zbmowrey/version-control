@@ -1,5 +1,7 @@
 module "repo-zbmowrey-insult-bot" {
-
+  providers              = {
+    github = github.zbmowrey
+  }
   source                 = "./modules/repository"
   github_org             = "zbmowrey"
   repository_base_name   = "insult-bot"

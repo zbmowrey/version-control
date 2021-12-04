@@ -1,5 +1,7 @@
 module "repo-zbmowrey-zbmowrey-com" {
-
+  providers = {
+    github = github.zbmowrey
+  }
 
   source                 = "./modules/repository"
   github_org             = "zbmowrey"

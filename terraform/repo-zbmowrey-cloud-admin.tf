@@ -1,5 +1,7 @@
 module "repo-zbmowrey-cloud-admin" {
-
+  providers              = {
+    github = github.zbmowrey
+  }
   source                 = "./modules/repository"
   github_token           = var.github_token
   github_org             = "zbmowrey"
