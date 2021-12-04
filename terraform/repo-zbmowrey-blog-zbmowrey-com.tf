@@ -5,7 +5,7 @@ module "repo-blog-zbmowrey-zbmowrey-com" {
   source                 = "./modules/repository"
   github_org             = "zbmowrey"
   repository_base_name   = "blog-zbmowrey-com"
-  repository_description = "https://blog.zbmowrey.com - a Blog."
+  repository_description = "https://blog.zbmowrey.com - a Blogg."
 
   repository_types   = ["none"]
   aws_key_main       = var.aws_key_main
