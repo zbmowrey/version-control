@@ -7,6 +7,7 @@ variable "aws_secret_develop" {}
 variable "github_token" {}
 variable "terraform_token" {}
 variable "serverless_tokens" {}
+variable "serverless_token" {}
 variable "cf_distributions" {}
 
 # Not actually used but it's in global vars and I'm tired of the noise about unused variables.
