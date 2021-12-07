@@ -9,6 +9,7 @@ module "repo-zbmowrey-cloud-admin" {
   repository_description = "Cloud Governance - Organizations, Policies, and Controls"
   repository_types       = ["none"]
   repository_visibility  = "public"
-  create_develop         = false
-  create_staging         = false
+  create_develop = false
+  create_staging = false
+  terraform_token         = var.terraform_token
 }

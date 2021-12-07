@@ -100,69 +100,84 @@ resource "github_branch_protection" "staging" {
   }
 }
 
+resource "github_actions_secret" "github_token" {
+  for_each        = var.create-github-token && var.github_token != "" ? github_repository.repo : {}
+  repository      = each.value["name"]
+  secret_name     = "GH_TOKEN"
+  plaintext_value = var.github_token
+}
+
+resource "github_actions_secret" "slack-url" {
+  for_each        = var.create-slack-url && var.slack_url != "" ? github_repository.repo : {}
+  repository      = each.value["name"]
+  secret_name     = "TERRAFORM_SLACK_URL"
+  plaintext_value = var.slack_url
+}
+
 # Create Github Repo Secrets
 resource "github_actions_secret" "terraform_token" {
-  for_each        = var.terraform_token != "" ? github_repository.repo : {}
+  for_each        = github_repository.repo
   repository      = each.value["name"]
   secret_name     = "TERRAFORM_CLOUD_TOKEN"
   plaintext_value = var.terraform_token
 }
 resource "github_actions_secret" "serverless_token" {
-  for_each        = var.serverless_token != "" ? github_repository.repo : {}
+  for_each        = var.create-serverless-token && var.serverless_token != "" ? github_repository.repo : {}
   repository      = each.value["name"]
   secret_name     = "SERVERLESS_TOKEN"
   plaintext_value = var.serverless_token
 }
+
 resource "github_actions_secret" "aws-key-main" {
-  for_each        = var.aws_key_main != "" ? github_repository.repo : {}
+  for_each        = var.create-aws-secrets && var.aws_key_main != "" ? github_repository.repo : {}
   repository      = each.value["name"]
   secret_name     = "AWS_KEY_MAIN"
   plaintext_value = var.aws_key_main
 }
 resource "github_actions_secret" "aws-secret-main" {
-  for_each        = var.aws_secret_main != "" ? github_repository.repo : {}
+  for_each        = var.create-aws-secrets && var.aws_secret_main != "" ? github_repository.repo : {}
   repository      = each.value["name"]
   secret_name     = "AWS_SECRET_MAIN"
   plaintext_value = var.aws_secret_main
 }
 resource "github_actions_secret" "aws-key-staging" {
-  for_each        = var.create_staging && var.aws_key_staging != "" ? github_repository.repo : {}
+  for_each        = var.create-aws-secrets && var.create_staging && var.aws_key_staging != "" ? github_repository.repo : {}
   repository      = each.value["name"]
   secret_name     = "AWS_KEY_STAGING"
   plaintext_value = var.aws_key_staging
 }
 resource "github_actions_secret" "aws-secret-staging" {
-  for_each        = var.create_staging && var.aws_secret_staging != "" ? github_repository.repo : {}
+  for_each        = var.create-aws-secrets && var.create_staging && var.aws_secret_staging != "" ? github_repository.repo : {}
   repository      = each.value["name"]
   secret_name     = "AWS_SECRET_STAGING"
   plaintext_value = var.aws_secret_staging
 }
 resource "github_actions_secret" "aws-key-develop" {
-  for_each        = var.create_develop && var.aws_key_develop != "" ? github_repository.repo : {}
+  for_each        = var.create-aws-secrets && var.create_develop && var.aws_key_develop != "" ? github_repository.repo : {}
   repository      = each.value["name"]
   secret_name     = "AWS_KEY_DEVELOP"
   plaintext_value = var.aws_key_develop
 }
 resource "github_actions_secret" "aws-secret-develop" {
-  for_each        = var.create_develop && var.aws_secret_develop != "" ? github_repository.repo : {}
+  for_each        = var.create-aws-secrets && var.create_develop && var.aws_secret_develop != "" ? github_repository.repo : {}
   repository      = each.value["name"]
   secret_name     = "AWS_SECRET_DEVELOP"
   plaintext_value = var.aws_secret_develop
 }
 resource "github_actions_secret" "cf-distribution-main" {
-  for_each        = var.cf_distribution_main != "" ? github_repository.repo : {}
+  for_each        = var.create-aws-secrets && var.cf_distribution_main != "" ? github_repository.repo : {}
   repository      = each.value["name"]
   secret_name     = "CF_DISTRIBUTION_MAIN"
   plaintext_value = var.cf_distribution_main
 }
 resource "github_actions_secret" "cf-distribution-staging" {
-  for_each        = var.create_staging && var.cf_distribution_staging != "" ? github_repository.repo : {}
+  for_each        = var.create-aws-secrets && var.create_staging && var.cf_distribution_staging != "" ? github_repository.repo : {}
   repository      = each.value["name"]
   secret_name     = "CF_DISTRIBUTION_STAGING"
   plaintext_value = var.cf_distribution_staging
 }
 resource "github_actions_secret" "cf-distribution-develop" {
-  for_each        = var.create_develop && var.cf_distribution_develop != "" ? github_repository.repo : {}
+  for_each        = var.create-aws-secrets && var.create_develop && var.cf_distribution_develop != "" ? github_repository.repo : {}
   repository      = each.value["name"]
   secret_name     = "CF_DISTRIBUTION_DEVELOP"
   plaintext_value = var.cf_distribution_develop

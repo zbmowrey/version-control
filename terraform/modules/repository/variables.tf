@@ -31,14 +31,47 @@ variable "create_api_repo" {
   default     = false
 }
 
+# Feature Flags
+
+# If true, we'll add the TF Slack URL to the repo secrets.
+variable "slack_url" {
+  type = string
+  default = ""
+}
+variable "create-slack-url" {
+  type = bool
+  default = false
+}
+
+# If true, Serverless.com token will be created as a secret in the repo.
+# Only needed if we're using Serverless to manage Lambdas.
+variable "create-serverless-token" {
+  type    = bool
+  default = false
+}
+# If true, a github token will be added to secrets. Should only be needed
+# If we're performing repository management - CRUD of repos, secrets, etc.
+variable "create-github-token" {
+  type    = bool
+  default = false
+}
+# If true, we'll create the various AWS keys and (potentially) CloudFront distro IDs.
+variable "create-aws-secrets" {
+  type    = bool
+  default = false
+}
+
 # Service Tokens
 
 variable "terraform_token" {
-  default = ""
+  description = "Allows repo to deploy using Terraform."
+  type = string
 }
+
 variable "serverless_token" {
   default = ""
 }
+
 variable "aws_key_main" {
   default = ""
 }

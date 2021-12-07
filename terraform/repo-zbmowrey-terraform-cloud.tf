@@ -11,4 +11,5 @@ module "repo-zbmowrey-terraform-cloud" {
   repository_visibility  = "public"
   create_develop         = false
   create_staging         = false
+  terraform_token        = var.terraform_token
 }
