@@ -28,13 +28,7 @@ module "repo-org-template-tld" {
   # If you populate a list here, we'll create one repository for each item,
   # using the item as a suffix. 
 
-  # Example: ["web", "api"] for repo: template-tld would result in
-  #     template-tld-web and template-tld-api
-  # ... being created with identical configurations.  
-
-  repository_types = ["none"]
-
-  # Needed for app deployment to AWS. 
+  # Needed for app deployment to AWS.
 
   aws_key_main       = var.aws_key_main
   aws_secret_main    = var.aws_secret_main
@@ -42,10 +36,6 @@ module "repo-org-template-tld" {
   aws_secret_staging = var.aws_secret_staging
   aws_key_develop    = var.aws_key_develop
   aws_secret_develop = var.aws_secret_develop
-
-  # Needed to create the Repository
-
-  github_token = var.github_token
 
   # Try to find cloudfront distribution IDs for each environment. If not found
   # for any reason, return "". If provided, your Github Actions workflow should

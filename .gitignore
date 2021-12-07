@@ -1,2 +1,4 @@
-.idea/
-**state.json**
+.idea
+.terraform
+terraform.auto.tfvars
+state.json

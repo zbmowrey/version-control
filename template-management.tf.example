@@ -19,10 +19,8 @@ module "repo-org-template" {
   }
   source                 = "./modules/repository"
   github_org             = "-org-"
-  github_token           = var.github_token
   repository_base_name   = "template"
   repository_description = "Give_Me_a_Description"
-  repository_types       = ["none"]
   repository_visibility  = "public"
   create_develop         = false
   create_staging         = false

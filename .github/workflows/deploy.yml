@@ -1,0 +1,68 @@
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'terraform/**'
+
+jobs:
+  deploy-terraform:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./terraform
+    env:
+      TF_IN_AUTOMATION: true
+      TF_VAR_gh_token                                 : ${{ secrets.GH_TOKEN }}
+      TF_VAR_aws_root_key                             : ${{ secrets.AWS_ROOT_KEY }}
+      TF_VAR_aws_root_secret                          : ${{ secrets.AWS_ROOT_SECRET }}
+      TF_VAR_aws_key_main                             : ${{ secrets.AWS_KEY_MAIN }}
+      TF_VAR_aws_secret_main                          : ${{ secrets.AWS_SECRET_MAIN }}
+      TF_VAR_aws_key_staging                          : ${{ secrets.AWS_KEY_STAGING }}
+      TF_VAR_aws_secret_staging                       : ${{ secrets.AWS_SECRET_STAGING }}
+      TF_VAR_aws_key_develop                          : ${{ secrets.AWS_KEY_DEVELOP }}
+      TF_VAR_aws_secret_develop                       : ${{ secrets.AWS_SECRET_DEVELOP }}
+      TF_VAR_terraform_cloud_token                    : ${{ secrets.TERRAFORM_CLOUD_TOKEN }}
+      TF_VAR_terraform_slack_url                      : ${{ secrets.TERRAFORM_SLACK_URL }}
+      TF_VAR_serverless_token_repsales                : ${{ secrets.SERVERLESS_TOKEN_REPSALES }}
+      TF_VAR_serverless_token_tomatowarning           : ${{ secrets.SERVERLESS_TOKEN_TOMATOWARNING }}
+      TF_VAR_serverless_token_zbmowrey                : ${{ secrets.SERVERLESS_TOKEN_ZBMOWREY }}
+      TF_VAR_cf_distribution_zbmowrey_com_develop     : ${{ secrets.CF_DISTRIBUTION_ZBMOWREY_COM_DEVELOP }}
+      TF_VAR_cf_distribution_zbmowrey_com_staging     : ${{ secrets.CF_DISTRIBUTION_ZBMOWREY_COM_STAGING }}
+      TF_VAR_cf_distribution_zbmowrey_com_main        : ${{ secrets.CF_DISTRIBUTION_ZBMOWREY_COM_MAIN }}
+      TF_VAR_cf_distribution_repsales_net_develop     : ${{ secrets.CF_DISTRIBUTION_REPSALES_NET_DEVELOP }}
+      TF_VAR_cf_distribution_repsales_net_staging     : ${{ secrets.CF_DISTRIBUTION_REPSALES_NET_STAGING }}
+      TF_VAR_cf_distribution_repsales_net_main        : ${{ secrets.CF_DISTRIBUTION_REPSALES_NET_MAIN }}
+      TF_VAR_cf_distribution_tomatowarning_com_develop: ${{ secrets.CF_DISTRIBUTION_TOMATOWARNING_COM_DEVELOP }}
+      TF_VAR_cf_distribution_tomatowarning_com_staging: ${{ secrets.CF_DISTRIBUTION_TOMATOWARNING_COM_STAGING }}
+      TF_VAR_cf_distribution_tomatowarning_com_main   : ${{ secrets.CF_DISTRIBUTION_TOMATOWARNING_COM_MAIN }}
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2.3.4
+
+      - name: Install Terraform
+        id: tf_install
+        uses: hashicorp/setup-terraform@v1
+        with:
+          cli_config_credentials_token: ${{ secrets.TERRAFORM_CLOUD_TOKEN }}
+
+      - name: Terraform Init
+        id: tf_init
+        run: terraform init
+
+      - name: Terraform Plan
+        id: tf_plan
+        run: terraform plan -no-color -out="plan.txt"
+        continue-on-error: true
+
+      - name: Terraform Plan Failed - Halt Operation
+        id: tf_exit_on_failure
+        if: steps.plan.outcome == 'failure'
+        run: exit 1
+
+      - name: Terraform Apply on Push
+        id: tf_apply
+        if: github.event_name == 'push'
+        run: terraform apply plan.txt
