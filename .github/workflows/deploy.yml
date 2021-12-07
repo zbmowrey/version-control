@@ -12,7 +12,6 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./
     env:
       TF_IN_AUTOMATION: true
       TF_VAR_gh_token                                 : ${{ secrets.GH_TOKEN }}
