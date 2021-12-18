@@ -24,6 +24,7 @@ module "repo-zbmowrey-version-control" {
     SERVERLESS_TOKEN_ZBMOWREY                 = var.serverless_token_zbmowrey
     TERRAFORM_SLACK_URL                       = var.terraform_slack_url
     TERRAFORM_CLOUD_TOKEN                     = var.terraform_cloud_token
+    # Access to the appropriate account for each environment
     AWS_ROOT_KEY                              = var.aws_root_key
     AWS_ROOT_SECRET                           = var.aws_root_secret
     AWS_KEY_MAIN                              = var.aws_key_main
@@ -32,6 +33,7 @@ module "repo-zbmowrey-version-control" {
     AWS_SECRET_STAGING                        = var.aws_secret_staging
     AWS_KEY_DEVELOP                           = var.aws_key_develop
     AWS_SECRET_DEVELOP                        = var.aws_secret_develop
+    # Allows for CDN invalidation after app deployment
     CF_DISTRIBUTION_ZBMOWREY_COM_MAIN         = var.cf_distribution_zbmowrey_com_main
     CF_DISTRIBUTION_ZBMOWREY_COM_STAGING      = var.cf_distribution_zbmowrey_com_staging
     CF_DISTRIBUTION_ZBMOWREY_COM_DEVELOP      = var.cf_distribution_zbmowrey_com_develop
@@ -41,5 +43,9 @@ module "repo-zbmowrey-version-control" {
     CF_DISTRIBUTION_TOMATOWARNING_COM_MAIN    = var.cf_distribution_tomatowarning_com_main
     CF_DISTRIBUTION_TOMATOWARNING_COM_STAGING = var.cf_distribution_tomatowarning_com_staging
     CF_DISTRIBUTION_TOMATOWARNING_COM_DEVELOP = var.cf_distribution_tomatowarning_com_develop
+    # Allows cloud-admin to deploy into sub-accounts
+    AWS_DEVELOP_ROLE                          = var.develop_assume_role
+    AWS_MAIN_ROLE                             = var.main_assume_role
+    AWS_STAGING_ROLE                          = var.staging_assume_role
   }
 }

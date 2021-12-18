@@ -18,6 +18,12 @@ variable "serverless_token_zbmowrey" {
   default = ""
 }
 
+# Roles for deployment of governance infrastructure into environment accounts.
+
+variable "develop_assume_role" {}
+variable "staging_assume_role" {}
+variable "main_assume_role" {}
+
 # Anything deploying to AWS will need main,staging,develop secrets.
 # Org/Governance will need root account secrets.
 
