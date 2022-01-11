@@ -42,6 +42,9 @@ locals {
     AWS_SECRET_DEVELOP      = var.aws_secret_develop
     AWS_KEY_DEPLOYMENT      = var.aws_key_deployment
     AWS_SECRET_DEPLOYMENT   = var.aws_secret_deployment
+    AWS_DEVELOP_DEPLOY_ROLE = var.develop_deploy_role
+    AWS_STAGING_DEPLOY_ROLE = var.staging_deploy_role
+    AWS_MAIN_DEPLOY_ROLE    = var.main_deploy_role
     SERVERLESS_TOKEN        = ""
     CF_DISTRIBUTION_MAIN    = ""
     CF_DISTRIBUTION_STAGING = ""
