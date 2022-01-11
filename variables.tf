@@ -24,8 +24,22 @@ variable "develop_assume_role" {}
 variable "staging_assume_role" {}
 variable "main_assume_role" {}
 
+# Roles that app repositories can assume from the deployment account to deploy into workload accounts.
+
+variable "develop_deploy_role" {}
+variable "staging_deploy_role" {}
+variable "main_deploy_role" {}
+
 # Anything deploying to AWS will need main,staging,develop secrets.
 # Org/Governance will need root account secrets.
+
+# CHANGE NOTICE: We're going to provide a single credential for deployment, which links to
+# an IAM user which has zero IAM permissions, but which is able to assume roles in workload
+# accounts in order to deploy infra changes. The old keys need to stick around until all
+# projects have been updated to the new routine, then should be removed.
+
+variable "aws_key_deployment" {}
+variable "aws_secret_deployment" {}
 
 variable "aws_root_key" {}
 variable "aws_root_secret" {}

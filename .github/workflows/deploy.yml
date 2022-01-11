@@ -38,6 +38,9 @@ jobs:
       TF_VAR_develop_assume_role: ${{ secrets.AWS_DEVELOP_ROLE }}
       TF_VAR_main_assume_role: ${{ secrets.AWS_MAIN_ROLE }}
       TF_VAR_staging_assume_role: ${{ secrets.AWS_STAGING_ROLE }}
+      TF_VAR_develop_deploy_role: ${{ secrets.AWS_DEVELOP_DEPLOY_ROLE }}
+      TF_VAR_staging_deploy_role: ${{ secrets.AWS_STAGING_DEPLOY_ROLE }}
+      TF_VAR_main_deploy_role: ${{ secrets.AWS_MAIN_DEPLOY_ROLE }}
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2.3.4
