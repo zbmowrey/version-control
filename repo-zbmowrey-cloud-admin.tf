@@ -15,8 +15,6 @@ module "repo-zbmowrey-cloud-admin" {
 
   secrets                = {
     TERRAFORM_CLOUD_TOKEN = var.terraform_cloud_token
-    AWS_ROOT_KEY          = var.aws_root_key
-    AWS_ROOT_SECRET       = var.aws_root_key
 
     # Allow Cloud Admin to apply Org-level controls to workload accounts.
     AWS_MAIN_ROLE         = var.main_assume_role

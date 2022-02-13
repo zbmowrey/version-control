@@ -6,7 +6,7 @@
 # we can update secrets in version-control and have those "replicated" as needed.
 
 module "repo-zbmowrey-version-control" {
-  providers              = {
+  providers = {
     github = github.zbmowrey
   }
   source                 = "./modules/repository"
@@ -14,8 +14,10 @@ module "repo-zbmowrey-version-control" {
   repository_base_name   = "version-control"
   repository_description = "Repository Management in Terraform Cloud"
   repository_visibility  = "public"
+
   create_develop         = false
   create_staging         = false
+
   terraform_cloud_token  = var.terraform_cloud_token
   secrets                = {
     GH_TOKEN                       = var.gh_token
@@ -26,20 +28,9 @@ module "repo-zbmowrey-version-control" {
     TERRAFORM_CLOUD_TOKEN          = var.terraform_cloud_token
 
     # Access to the appropriate account for each environment
-    AWS_ROOT_KEY          = var.aws_root_key
-    AWS_ROOT_SECRET       = var.aws_root_secret
-    AWS_KEY_MAIN          = var.aws_key_main
-    AWS_SECRET_MAIN       = var.aws_secret_main
-    AWS_KEY_STAGING       = var.aws_key_staging
-    AWS_SECRET_STAGING    = var.aws_secret_staging
-    AWS_KEY_DEVELOP       = var.aws_key_develop
-    AWS_SECRET_DEVELOP    = var.aws_secret_develop
-
-    # We'll be gradually removing the above account credentials as apps are moved to this model
-    # of one-account role-assumption for deployments.
-
-    AWS_KEY_DEPLOYMENT    = var.aws_key_deployment
-    AWS_SECRET_DEPLOYMENT = var.aws_secret_deployment
+    AWS_MAIN_ACCOUNT    = var.aws_main_account
+    AWS_STAGING_ACCOUNT = var.aws_staging_account
+    AWS_DEVELOP_ACCOUNT = var.aws_develop_account
 
     # Allows for CDN invalidation after app deployment
     CF_DISTRIBUTION_ZBMOWREY_COM_MAIN         = var.cf_distribution_zbmowrey_com_main

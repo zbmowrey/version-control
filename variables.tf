@@ -37,25 +37,10 @@ variable "aws_main_account" {}
 variable "aws_staging_account" {}
 variable "aws_develop_account" {}
 
-# Anything deploying to AWS will need main,staging,develop secrets.
-# Org/Governance will need root account secrets.
-
 # CHANGE NOTICE: We're going to provide a single credential for deployment, which links to
 # an IAM user which has zero IAM permissions, but which is able to assume roles in workload
 # accounts in order to deploy infra changes. The old keys need to stick around until all
 # projects have been updated to the new routine, then should be removed.
-
-variable "aws_key_deployment" {}
-variable "aws_secret_deployment" {}
-
-variable "aws_root_key" {}
-variable "aws_root_secret" {}
-variable "aws_key_main" {}
-variable "aws_secret_main" {}
-variable "aws_key_staging" {}
-variable "aws_secret_staging" {}
-variable "aws_key_develop" {}
-variable "aws_secret_develop" {}
 
 # CloudFormation Distribution IDs (for cache invalidation after deploy)
 

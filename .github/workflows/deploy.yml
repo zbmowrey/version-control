@@ -13,16 +13,6 @@ jobs:
     env:
       TF_IN_AUTOMATION: true
       TF_VAR_gh_token: ${{ secrets.GH_TOKEN }}
-      TF_VAR_aws_root_key: ${{ secrets.AWS_ROOT_KEY }}
-      TF_VAR_aws_root_secret: ${{ secrets.AWS_ROOT_SECRET }}
-      TF_VAR_aws_key_main: ${{ secrets.AWS_KEY_MAIN }}
-      TF_VAR_aws_secret_main: ${{ secrets.AWS_SECRET_MAIN }}
-      TF_VAR_aws_key_staging: ${{ secrets.AWS_KEY_STAGING }}
-      TF_VAR_aws_secret_staging: ${{ secrets.AWS_SECRET_STAGING }}
-      TF_VAR_aws_key_develop: ${{ secrets.AWS_KEY_DEVELOP }}
-      TF_VAR_aws_secret_develop: ${{ secrets.AWS_SECRET_DEVELOP }}
-      TF_VAR_aws_key_deployment: ${{ secrets.AWS_KEY_DEPLOYMENT }}
-      TF_VAR_aws_secret_deployment: ${{ secrets.AWS_SECRET_DEPLOYMENT }}
       TF_VAR_terraform_cloud_token: ${{ secrets.TERRAFORM_CLOUD_TOKEN }}
       TF_VAR_terraform_slack_url: ${{ secrets.TERRAFORM_SLACK_URL }}
       TF_VAR_serverless_token_repsales: ${{ secrets.SERVERLESS_TOKEN_REPSALES }}

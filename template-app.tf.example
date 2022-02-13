@@ -28,14 +28,6 @@ module "repo-org-template-tld" {
   # If you populate a list here, we'll create one repository for each item,
   # using the item as a suffix. 
 
-  # Needed for app deployment to AWS.
-
-  aws_key_main       = var.aws_key_main
-  aws_secret_main    = var.aws_secret_main
-  aws_key_staging    = var.aws_key_staging
-  aws_secret_staging = var.aws_secret_staging
-  aws_key_develop    = var.aws_key_develop
-  aws_secret_develop = var.aws_secret_develop
 
   # Try to find cloudfront distribution IDs for each environment. If not found
   # for any reason, return "". If provided, your Github Actions workflow should
