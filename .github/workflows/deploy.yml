@@ -43,9 +43,9 @@ jobs:
       TF_VAR_develop_deploy_role: ${{ secrets.AWS_DEVELOP_DEPLOY_ROLE }}
       TF_VAR_staging_deploy_role: ${{ secrets.AWS_STAGING_DEPLOY_ROLE }}
       TF_VAR_main_deploy_role: ${{ secrets.AWS_MAIN_DEPLOY_ROLE }}
-      TF_VAR_aws_main_ccount: ${{ secrets.AWS_MAIN_ACCOUNT }}
-      TF_VAR_aws_staging_ccount: ${{ secrets.AWS_STAGING_ACCOUNT }}
-      TF_VAR_aws_develop_ccount: ${{ secrets.AWS_DEVELOP_ACCOUNT }}
+      TF_VAR_aws_main_account: ${{ secrets.AWS_MAIN_ACCOUNT }}
+      TF_VAR_aws_staging_account: ${{ secrets.AWS_STAGING_ACCOUNT }}
+      TF_VAR_aws_develop_account: ${{ secrets.AWS_DEVELOP_ACCOUNT }}
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2.3.4
@@ -62,7 +62,7 @@ jobs:
 
       - name: Terraform Plan
         id: tf_plan
-        run: terraform plan -no-color -out="plan.txt"
+        run: terraform plan -out="plan.txt" -var-file=terraform.auto.tfvars
         continue-on-error: true
 
       - name: Terraform Plan Failed - Halt Operation
@@ -73,4 +73,4 @@ jobs:
       - name: Terraform Apply on Push
         id: tf_apply
         if: github.event_name == 'push'
-        run: terraform apply plan.txt
+        run: terraform apply plan.txt -var-file=terraform.auto.tfvars
