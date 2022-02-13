@@ -30,6 +30,13 @@ variable "develop_deploy_role" {}
 variable "staging_deploy_role" {}
 variable "main_deploy_role" {}
 
+# Cutting over to OpenID Connect - we'll be able to remove most additional roles and all stored secret creds,
+# but we need account IDs so we can dynamically reach the right account.
+
+variable "aws_main_account" {}
+variable "aws_staging_account" {}
+variable "aws_develop_account" {}
+
 # Anything deploying to AWS will need main,staging,develop secrets.
 # Org/Governance will need root account secrets.
 

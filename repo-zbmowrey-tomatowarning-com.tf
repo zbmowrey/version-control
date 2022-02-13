@@ -3,7 +3,7 @@ module "repo-tomatowarning-tomatowarning-com" {
     github = github.tomatowarning
   }
   source                 = "./modules/repository"
-  github_org             = "tomatowarning"
+  github_org             = "zbmowrey"
   repository_base_name   = "tomatowarning-com"
   repository_description = "https://tomatowarning.com"
 

@@ -3,7 +3,7 @@ module "repo-repsales-repsales-net" {
     github = github.repsales
   }
   source                 = "./modules/repository"
-  github_org             = "repsales"
+  github_org             = "zbmowrey"
   repository_base_name   = "repsales-net"
   repository_description = "REP Sales, Inc. - primary site"
 
