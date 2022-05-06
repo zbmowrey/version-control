@@ -20,6 +20,12 @@ provider "github" {
 }
 
 provider "github" {
+  alias = "cloud-inc"
+  token = var.gh_token
+  owner = "clouddotinc"
+}
+
+provider "github" {
   alias = "repsales"
   token = var.gh_token
   owner = "repsales"

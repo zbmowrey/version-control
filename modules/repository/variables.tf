@@ -10,7 +10,11 @@ variable "terraform_cloud_token" {
   description = "Allows repo to deploy using Terraform."
   type = string
 }
-
+variable "create_branches" {
+  description = "Optional list of branches to create, with branch protection."
+  type = list(string)
+  default = []
+}
 
 
 # Explicitly call out each secret to be created for each repository.

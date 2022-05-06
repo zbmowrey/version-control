@@ -17,8 +17,19 @@ variable "serverless_token_tomatowarning" {
 variable "serverless_token_zbmowrey" {
   default = ""
 }
-
+variable "serverless_token_cloud_inc" {
+  default = ""
+}
 # Roles for deployment of governance infrastructure into environment accounts.
+
+variable "cdi_dev_account" {
+  type = string
+  default = ""
+}
+variable "cdi_main_account" {
+  type = string
+  default = ""
+}
 
 variable "develop_assume_role" {}
 variable "staging_assume_role" {}
@@ -53,3 +64,6 @@ variable "cf_distribution_repsales_net_main" {}
 variable "cf_distribution_tomatowarning_com_develop" {}
 variable "cf_distribution_tomatowarning_com_staging" {}
 variable "cf_distribution_tomatowarning_com_main" {}
+variable "cf_distribution_cloud_inc_develop" {}
+variable "cf_distribution_cloud_inc_staging" {}
+variable "cf_distribution_cloud_inc_main" {}
