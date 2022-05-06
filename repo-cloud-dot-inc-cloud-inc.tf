@@ -21,7 +21,6 @@ module "repo-cloud-dot-inc-cloud-inc" {
     AWS_MAIN_ACCOUNT        = var.cdi_main_account
     SERVERLESS_TOKEN        = var.serverless_token_cloud_inc
     CF_DISTRIBUTION_MAIN    = var.cf_distribution_cloud_inc_main
-    CF_DISTRIBUTION_STAGING = var.cf_distribution_cloud_inc_staging
     CF_DISTRIBUTION_DEVELOP = var.cf_distribution_cloud_inc_develop
   })
 }

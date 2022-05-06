@@ -15,11 +15,11 @@ module "repo-zbmowrey-version-control" {
   repository_description = "Repository Management in Terraform Cloud"
   repository_visibility  = "public"
 
-  create_develop         = false
-  create_staging         = false
+  create_develop = false
+  create_staging = false
 
-  terraform_cloud_token  = var.terraform_cloud_token
-  secrets                = {
+  terraform_cloud_token = var.terraform_cloud_token
+  secrets               = {
     GH_TOKEN                       = var.gh_token
     SERVERLESS_TOKEN_REPSALES      = var.serverless_token_repsales
     SERVERLESS_TOKEN_TOMATOWARNING = var.serverless_token_tomatowarning
@@ -33,12 +33,19 @@ module "repo-zbmowrey-version-control" {
     AWS_DEVELOP_ACCOUNT = var.aws_develop_account
 
     # Allows for CDN invalidation after app deployment
+
+    CF_DISTRIBUTION_CLOUD_INC_MAIN    = var.cf_distribution_cloud_inc_main
+    CF_DISTRIBUTION_CLOUD_INC_STAGING = var.cf_distribution_cloud_inc_staging
+    CF_DISTRIBUTION_CLOUD_INC_DEVELOP = var.cf_distribution_cloud_inc_develop
+
     CF_DISTRIBUTION_ZBMOWREY_COM_MAIN         = var.cf_distribution_zbmowrey_com_main
     CF_DISTRIBUTION_ZBMOWREY_COM_STAGING      = var.cf_distribution_zbmowrey_com_staging
     CF_DISTRIBUTION_ZBMOWREY_COM_DEVELOP      = var.cf_distribution_zbmowrey_com_develop
+
     CF_DISTRIBUTION_REPSALES_NET_MAIN         = var.cf_distribution_repsales_net_main
     CF_DISTRIBUTION_REPSALES_NET_STAGING      = var.cf_distribution_repsales_net_staging
     CF_DISTRIBUTION_REPSALES_NET_DEVELOP      = var.cf_distribution_repsales_net_develop
+
     CF_DISTRIBUTION_TOMATOWARNING_COM_MAIN    = var.cf_distribution_tomatowarning_com_main
     CF_DISTRIBUTION_TOMATOWARNING_COM_STAGING = var.cf_distribution_tomatowarning_com_staging
     CF_DISTRIBUTION_TOMATOWARNING_COM_DEVELOP = var.cf_distribution_tomatowarning_com_develop

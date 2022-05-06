@@ -15,24 +15,33 @@ jobs:
       TF_VAR_gh_token: ${{ secrets.GH_TOKEN }}
       TF_VAR_terraform_cloud_token: ${{ secrets.TERRAFORM_CLOUD_TOKEN }}
       TF_VAR_terraform_slack_url: ${{ secrets.TERRAFORM_SLACK_URL }}
+
       TF_VAR_serverless_token_repsales: ${{ secrets.SERVERLESS_TOKEN_REPSALES }}
       TF_VAR_serverless_token_tomatowarning: ${{ secrets.SERVERLESS_TOKEN_TOMATOWARNING }}
       TF_VAR_serverless_token_zbmowrey: ${{ secrets.SERVERLESS_TOKEN_ZBMOWREY }}
+
+      TF_VAR_cf_distribution_cloud_inc_develop: ${{ secrets.CF_DISTRIBUTION_CLOUD_INC_DEVELOP }}
+      TF_VAR_cf_distribution_cloud_inc_main: ${{ secrets.CF_DISTRIBUTION_CLOUD_INC_MAIN }}
+
       TF_VAR_cf_distribution_zbmowrey_com_develop: ${{ secrets.CF_DISTRIBUTION_ZBMOWREY_COM_DEVELOP }}
       TF_VAR_cf_distribution_zbmowrey_com_staging: ${{ secrets.CF_DISTRIBUTION_ZBMOWREY_COM_STAGING }}
       TF_VAR_cf_distribution_zbmowrey_com_main: ${{ secrets.CF_DISTRIBUTION_ZBMOWREY_COM_MAIN }}
+
       TF_VAR_cf_distribution_repsales_net_develop: ${{ secrets.CF_DISTRIBUTION_REPSALES_NET_DEVELOP }}
       TF_VAR_cf_distribution_repsales_net_staging: ${{ secrets.CF_DISTRIBUTION_REPSALES_NET_STAGING }}
       TF_VAR_cf_distribution_repsales_net_main: ${{ secrets.CF_DISTRIBUTION_REPSALES_NET_MAIN }}
+
       TF_VAR_cf_distribution_tomatowarning_com_develop: ${{ secrets.CF_DISTRIBUTION_TOMATOWARNING_COM_DEVELOP }}
       TF_VAR_cf_distribution_tomatowarning_com_staging: ${{ secrets.CF_DISTRIBUTION_TOMATOWARNING_COM_STAGING }}
       TF_VAR_cf_distribution_tomatowarning_com_main: ${{ secrets.CF_DISTRIBUTION_TOMATOWARNING_COM_MAIN }}
+
       TF_VAR_develop_assume_role: ${{ secrets.AWS_DEVELOP_ROLE }}
       TF_VAR_main_assume_role: ${{ secrets.AWS_MAIN_ROLE }}
       TF_VAR_staging_assume_role: ${{ secrets.AWS_STAGING_ROLE }}
       TF_VAR_develop_deploy_role: ${{ secrets.AWS_DEVELOP_DEPLOY_ROLE }}
       TF_VAR_staging_deploy_role: ${{ secrets.AWS_STAGING_DEPLOY_ROLE }}
       TF_VAR_main_deploy_role: ${{ secrets.AWS_MAIN_DEPLOY_ROLE }}
+
       TF_VAR_aws_main_account: ${{ secrets.AWS_MAIN_ACCOUNT }}
       TF_VAR_aws_staging_account: ${{ secrets.AWS_STAGING_ACCOUNT }}
       TF_VAR_aws_develop_account: ${{ secrets.AWS_DEVELOP_ACCOUNT }}
