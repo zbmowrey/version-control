@@ -16,7 +16,7 @@ jobs:
       TF_VAR_terraform_cloud_token: ${{ secrets.TERRAFORM_CLOUD_TOKEN }}
       TF_VAR_terraform_slack_url: ${{ secrets.TERRAFORM_SLACK_URL }}
 
-      TF_VAR_serverless_token_cloud_inc: ${{ secrets. }}
+      TF_VAR_serverless_token_cloud_inc: ${{ secrets.SERVERLESS_TOKEN_CLOUD_INC }}
       TF_VAR_serverless_token_repsales: ${{ secrets.SERVERLESS_TOKEN_REPSALES }}
       TF_VAR_serverless_token_tomatowarning: ${{ secrets.SERVERLESS_TOKEN_TOMATOWARNING }}
       TF_VAR_serverless_token_zbmowrey: ${{ secrets.SERVERLESS_TOKEN_ZBMOWREY }}
@@ -48,7 +48,7 @@ jobs:
       TF_VAR_develop_deploy_role: ${{ secrets.AWS_DEVELOP_DEPLOY_ROLE }}
       TF_VAR_staging_deploy_role: ${{ secrets.AWS_STAGING_DEPLOY_ROLE }}
       TF_VAR_main_deploy_role: ${{ secrets.AWS_MAIN_DEPLOY_ROLE }}
-      
+
       TF_VAR_cdi_dev_account: ${{ secrets.CDI_AWS_DEVELOP_ACCOUNT }}
       TF_VAR_cdi_main_account: ${{ secrets.CDI_AWS_MAIN_ACCOUNT }}
 
