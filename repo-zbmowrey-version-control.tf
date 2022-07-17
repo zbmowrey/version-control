@@ -21,9 +21,12 @@ module "repo-zbmowrey-version-control" {
   terraform_cloud_token = var.terraform_cloud_token
   secrets               = {
     GH_TOKEN                       = var.gh_token
+
     SERVERLESS_TOKEN_REPSALES      = var.serverless_token_repsales
     SERVERLESS_TOKEN_TOMATOWARNING = var.serverless_token_tomatowarning
     SERVERLESS_TOKEN_ZBMOWREY      = var.serverless_token_zbmowrey
+    SERVERLESS_TOKEN_CLOUD_INC     = var.serverless_token_cloud_inc
+
     TERRAFORM_SLACK_URL            = var.terraform_slack_url
     TERRAFORM_CLOUD_TOKEN          = var.terraform_cloud_token
 
