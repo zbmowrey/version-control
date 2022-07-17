@@ -32,19 +32,21 @@ module "repo-zbmowrey-version-control" {
     AWS_STAGING_ACCOUNT = var.aws_staging_account
     AWS_DEVELOP_ACCOUNT = var.aws_develop_account
 
-    # Allows for CDN invalidation after app deployment
+    CDI_AWS_MAIN_ACCOUNT    = var.cdi_main_account
+    CDI_AWS_DEVELOP_ACCOUNT = var.cdi_dev_account
 
+    # Allows for CDN invalidation after app deployment
     CF_DISTRIBUTION_CLOUD_INC_MAIN    = var.cf_distribution_cloud_inc_main
     CF_DISTRIBUTION_CLOUD_INC_STAGING = var.cf_distribution_cloud_inc_staging
     CF_DISTRIBUTION_CLOUD_INC_DEVELOP = var.cf_distribution_cloud_inc_develop
 
-    CF_DISTRIBUTION_ZBMOWREY_COM_MAIN         = var.cf_distribution_zbmowrey_com_main
-    CF_DISTRIBUTION_ZBMOWREY_COM_STAGING      = var.cf_distribution_zbmowrey_com_staging
-    CF_DISTRIBUTION_ZBMOWREY_COM_DEVELOP      = var.cf_distribution_zbmowrey_com_develop
+    CF_DISTRIBUTION_ZBMOWREY_COM_MAIN    = var.cf_distribution_zbmowrey_com_main
+    CF_DISTRIBUTION_ZBMOWREY_COM_STAGING = var.cf_distribution_zbmowrey_com_staging
+    CF_DISTRIBUTION_ZBMOWREY_COM_DEVELOP = var.cf_distribution_zbmowrey_com_develop
 
-    CF_DISTRIBUTION_REPSALES_NET_MAIN         = var.cf_distribution_repsales_net_main
-    CF_DISTRIBUTION_REPSALES_NET_STAGING      = var.cf_distribution_repsales_net_staging
-    CF_DISTRIBUTION_REPSALES_NET_DEVELOP      = var.cf_distribution_repsales_net_develop
+    CF_DISTRIBUTION_REPSALES_NET_MAIN    = var.cf_distribution_repsales_net_main
+    CF_DISTRIBUTION_REPSALES_NET_STAGING = var.cf_distribution_repsales_net_staging
+    CF_DISTRIBUTION_REPSALES_NET_DEVELOP = var.cf_distribution_repsales_net_develop
 
     CF_DISTRIBUTION_TOMATOWARNING_COM_MAIN    = var.cf_distribution_tomatowarning_com_main
     CF_DISTRIBUTION_TOMATOWARNING_COM_STAGING = var.cf_distribution_tomatowarning_com_staging
@@ -61,7 +63,6 @@ module "repo-zbmowrey-version-control" {
     AWS_MAIN_DEPLOY_ROLE    = var.main_deploy_role
 
     # FortuneWall Secrets
-
     FORTUNEWALL_DB_HOST = var.fortunewall_host
     FORTUNEWALL_DB_USER = var.fortunewall_user
     FORTUNEWALL_DB_NAME = var.fortunewall_name

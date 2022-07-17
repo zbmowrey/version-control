@@ -17,6 +17,8 @@ module "repo-cloud-dot-inc-aws-org" {
   repository_visibility = "private"
 
   secrets = merge(local.app_repo_secrets, {
+    AWS_DEVELOP_ACCOUNT     = var.cdi_dev_account
+    AWS_MAIN_ACCOUNT        = var.cdi_main_account
     SERVERLESS_TOKEN        = var.serverless_token_cloud_inc
     CF_DISTRIBUTION_MAIN    = var.cf_distribution_cloud_inc_main
     CF_DISTRIBUTION_STAGING = var.cf_distribution_cloud_inc_staging
