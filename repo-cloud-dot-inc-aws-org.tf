@@ -14,7 +14,7 @@ module "repo-cloud-dot-inc-aws-org" {
   terraform_cloud_token = var.terraform_cloud_token
   serverless_token      = var.serverless_token_cloud_inc
 
-  repository_visibility = "public"
+  repository_visibility = "private"
 
   secrets = merge(local.app_repo_secrets, {
     SERVERLESS_TOKEN        = var.serverless_token_cloud_inc

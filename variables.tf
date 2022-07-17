@@ -31,6 +31,7 @@ variable "cdi_main_account" {
   default = ""
 }
 
+
 variable "develop_assume_role" {}
 variable "staging_assume_role" {}
 variable "main_assume_role" {}
@@ -67,3 +68,8 @@ variable "cf_distribution_tomatowarning_com_main" {}
 variable "cf_distribution_cloud_inc_develop" {}
 variable "cf_distribution_cloud_inc_staging" {}
 variable "cf_distribution_cloud_inc_main" {}
+
+variable "fortunewall_host" {}
+variable "fortunewall_user" {}
+variable "fortunewall_name" {}
+variable "fortunewall_pass" {}

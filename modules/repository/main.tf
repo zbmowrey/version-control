@@ -12,7 +12,7 @@ terraform {
 
 locals {
   repository_visibility       = var.repository_visibility != "" ? var.repository_visibility : "private"
-  dynamic_repository_settings = local.repository_visibility == "private" ? [] : [
+  dynamic_repository_settings = var.github_org != "clouddotinc" && local.repository_visibility == "private" ? [] : [
     {
       dismiss_stale_reviews           = false
       dismissal_restrictions          = []
