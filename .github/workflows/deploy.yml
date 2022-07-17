@@ -5,7 +5,7 @@ on:
 
 jobs:
   deploy-terraform:
-    timeout-minutes: 30
+    timeout-minutes: 10
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -23,7 +23,7 @@ jobs:
       TF_VAR_cf_distribution_cloud_inc_develop: ${{ secrets.CF_DISTRIBUTION_CLOUD_INC_DEVELOP }}
       TF_VAR_cf_distribution_cloud_inc_main: ${{ secrets.CF_DISTRIBUTION_CLOUD_INC_MAIN }}
       TF_VAR_cf_distribution_cloud_inc_staging: ""
-      
+
       TF_VAR_cf_distribution_zbmowrey_com_develop: ${{ secrets.CF_DISTRIBUTION_ZBMOWREY_COM_DEVELOP }}
       TF_VAR_cf_distribution_zbmowrey_com_staging: ${{ secrets.CF_DISTRIBUTION_ZBMOWREY_COM_STAGING }}
       TF_VAR_cf_distribution_zbmowrey_com_main: ${{ secrets.CF_DISTRIBUTION_ZBMOWREY_COM_MAIN }}
