@@ -59,5 +59,13 @@ module "repo-zbmowrey-version-control" {
     AWS_DEVELOP_DEPLOY_ROLE = var.develop_deploy_role
     AWS_STAGING_DEPLOY_ROLE = var.staging_deploy_role
     AWS_MAIN_DEPLOY_ROLE    = var.main_deploy_role
+
+    # FortuneWall Secrets
+
+    FORTUNEWALL_DB_HOST = var.fortunewall_host
+    FORTUNEWALL_DB_USER = var.fortunewall_user
+    FORTUNEWALL_DB_NAME = var.fortunewall_name
+    FORTUNEWALL_DB_PASS = var.fortunewall_pass
+
   }
 }

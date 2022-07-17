@@ -16,16 +16,13 @@ module "repo-cloud-dot-inc-fizzylabs-fortunewall" {
 
   repository_visibility = "private"
 
-  # This client website doesn't use AWS so these variables are not necessary.
-  # This may change.
-
   secrets = merge(local.app_repo_secrets, {
     DB_HOST                 = var.fortunewall_host
     DB_USER                 = var.fortunewall_user
     DB_NAME                 = var.fortunewall_name
     DB_PASS                 = var.fortunewall_pass
-    AWS_DEVELOP_ACCOUNT     = ""
-    AWS_MAIN_ACCOUNT        = ""
+    AWS_DEVELOP_ACCOUNT     = var.cdi_dev_account
+    AWS_MAIN_ACCOUNT        = var.cdi_main_account
     SERVERLESS_TOKEN        = ""
     CF_DISTRIBUTION_MAIN    = ""
     CF_DISTRIBUTION_DEVELOP = ""

@@ -20,6 +20,11 @@ jobs:
       TF_VAR_serverless_token_tomatowarning: ${{ secrets.SERVERLESS_TOKEN_TOMATOWARNING }}
       TF_VAR_serverless_token_zbmowrey: ${{ secrets.SERVERLESS_TOKEN_ZBMOWREY }}
 
+      TF_VAR_fortunewall_host: ${{ secrets.FORTUNEWALL_DB_HOST }}
+      TF_VAR_fortunewall_user: ${{ secrets.FORTUNEWALL_DB_USER }}
+      TF_VAR_fortunewall_name: ${{ secrets.FORTUNEWALL_DB_NAME }}
+      TF_VAR_fortunewall_pass: ${{ secrets.FORTUNEWALL_DB_PASS }}
+
       TF_VAR_cf_distribution_cloud_inc_develop: ${{ secrets.CF_DISTRIBUTION_CLOUD_INC_DEVELOP }}
       TF_VAR_cf_distribution_cloud_inc_main: ${{ secrets.CF_DISTRIBUTION_CLOUD_INC_MAIN }}
       TF_VAR_cf_distribution_cloud_inc_staging: ""
