@@ -13,7 +13,7 @@ module "repo-repsales-repsales-net" {
   terraform_cloud_token = var.terraform_cloud_token
   serverless_token      = var.serverless_token_repsales
 
-  repository_visibility = "public"
+  repository_visibility = "private"
 
   secrets = merge(local.app_repo_secrets, {
     AWS_DEVELOP_ACCOUNT     = var.cdi_dev_account
